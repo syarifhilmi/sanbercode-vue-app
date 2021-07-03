@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <alert />
+    <Alert />
+    <Dialog />
     <v-snackbar
       v-model="snackbarStatus"
       color="success"
@@ -92,18 +93,17 @@ import { mapActions } from "vuex";
 export default {
   components: {
     Alert: () => import("./components/Alert.vue"),
+    Dialog: () => import("./components/Dialog.vue"),
   },
   name: "App",
 
   data: () => ({
-    drawer: true,
+    drawer: false,
     menus: [
       { title: "Home", icon: "mdi-home", route: "/" },
       { title: "Blogs", icon: "mdi-note", route: "/blogs" },
     ],
     guest: true,
-    snackbarStatus: false,
-    snackbarText: "Anda berhasil menampilkan alert",
   }),
   methods: {
     logout() {
@@ -115,19 +115,13 @@ export default {
       });
     },
     login() {
-      this.guest = false;
-      this.setAlert({
-        status: true,
-        color: "success",
-        text: "Anda berhasil login",
-      });
+      //this.guest = false;
+      this.setDialogComponent({ component: "login" });
     },
     ...mapActions({
       setAlert: "alert/set",
+      setDialogComponent: "dialog/setComponent",
     }),
-  },
-  mounted() {
-    this.snackbarStatus = true;
   },
 };
 </script>
