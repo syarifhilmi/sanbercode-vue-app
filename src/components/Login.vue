@@ -35,20 +35,50 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
       email: "",
       showPassword: false,
       password: "",
+      apiDomain: "http://demo-api-vue.sanbercloud.com",
     };
   },
   methods: {
+    ...mapActions({
+      setAlert: "alert/set",
+    }),
     close() {
       this.$emit("closed", false);
     },
     submit() {
-      alert("masuk method submit");
+      const config = {
+        method: "post",
+        url: this.apiDomain + "/api/v2/auth/login",
+        data: {
+          email: this.email,
+          password: this.password,
+        },
+      };
+      this.axios(config)
+        .then((response) => {
+          console.log(response.data);
+          this.setAlert({
+            status: true,
+            color: "success",
+            text: "Login Berhasil",
+          });
+          this.close();
+        })
+        .catch((response) => {
+          console.log(response);
+          this.setAlert({
+            status: true,
+            color: "error",
+            text: "Login Gagal",
+          });
+        });
     },
   },
 };
