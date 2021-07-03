@@ -22,10 +22,16 @@
       <v-list>
         <v-list-item v-if="!guest">
           <v-list-item-avatar>
-            <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
+            <v-img
+              :src="
+                user.photo_profile
+                  ? apiDomain + user.photo_profile
+                  : 'https://randomuser.me/api/portraits/men/78.jpg'
+              "
+            ></v-img>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Suparman</v-list-item-title>
+            <v-list-item-title>{{ user.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -89,7 +95,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     Alert: () => import("./components/Alert.vue"),
@@ -103,8 +109,15 @@ export default {
       { title: "Home", icon: "mdi-home", route: "/" },
       { title: "Blogs", icon: "mdi-note", route: "/blogs" },
     ],
-    guest: true,
+    apiDomain: "http://demo-api-vue.sanbercloud.com",
   }),
+
+  computed: {
+    ...mapGetters({
+      guest: "auth/guest",
+      user: "auth/user",
+    }),
+  },
   methods: {
     logout() {
       this.guest = true;
