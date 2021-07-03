@@ -7,14 +7,48 @@
       <v-toolbar-title>Login</v-toolbar-title>
     </v-toolbar>
     <v-divider></v-divider>
+    <v-container fluid>
+      <v-form ref="form">
+        <v-text-field
+          v-model="email"
+          label="E-mail"
+          required
+          append-icon="mdi-email"
+        ></v-text-field>
+        <v-text-field
+          v-model="password"
+          label="Password"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPassword ? 'text' : 'password'"
+          counter
+          @click:append="showPassword = !showPassword"
+        ></v-text-field>
+        <div class="text-xs-center">
+          <v-btn color="success lighten-1" @click="submit">
+            Login
+            <v-icon right dark>mdi-lock-open</v-icon>
+          </v-btn>
+        </div>
+      </v-form>
+    </v-container>
   </v-card>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      email: "",
+      showPassword: false,
+      password: "",
+    };
+  },
   methods: {
     close() {
       this.$emit("closed", false);
+    },
+    submit() {
+      alert("masuk method submit");
     },
   },
 };
