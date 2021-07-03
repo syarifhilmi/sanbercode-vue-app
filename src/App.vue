@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <alert />
     <v-snackbar
       v-model="snackbarStatus"
       color="success"
@@ -28,7 +29,7 @@
         </v-list-item>
 
         <div class="pa-2" v-if="guest">
-          <v-btn block color="primary" class="mb-1">
+          <v-btn block color="primary" class="mb-1" @click="login">
             <v-icon left>mdi-lock</v-icon>
             Login
           </v-btn>
@@ -87,7 +88,11 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
+  components: {
+    Alert: () => import("./components/Alert.vue"),
+  },
   name: "App",
 
   data: () => ({
@@ -100,6 +105,27 @@ export default {
     snackbarStatus: false,
     snackbarText: "Anda berhasil menampilkan alert",
   }),
+  methods: {
+    logout() {
+      this.guest = true;
+      this.setAlert({
+        status: true,
+        color: "success",
+        text: "Anda berhasil logout",
+      });
+    },
+    login() {
+      this.guest = false;
+      this.setAlert({
+        status: true,
+        color: "success",
+        text: "Anda berhasil login",
+      });
+    },
+    ...mapActions({
+      setAlert: "alert/set",
+    }),
+  },
   mounted() {
     this.snackbarStatus = true;
   },
