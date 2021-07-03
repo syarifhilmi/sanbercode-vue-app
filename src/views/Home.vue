@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      count: "count",
+      count: "counter/count",
     }),
   },
   methods: {
@@ -51,7 +51,7 @@ export default {
         });
     },
     ...mapMutations({
-      increment: "increment",
+      increment: "counter/increment",
     }),
   },
   created() {
