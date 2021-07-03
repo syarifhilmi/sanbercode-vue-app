@@ -27,19 +27,25 @@ export default {
   components: {
     "blog-item-component": BlogItemComponent,
   },
+
+  methods: {
+    go() {
+      const config = {
+        method: "get",
+        url: this.apiDomain + "/api/v2/blog/random/4",
+      };
+      this.axios(config)
+        .then((response) => {
+          let { blogs } = response.data;
+          this.blogs = blogs;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
   created() {
-    const config = {
-      method: "get",
-      url: this.apiDomain + "/api/v2/blog/random/4",
-    };
-    this.axios(config)
-      .then((response) => {
-        let { blogs } = response.data;
-        this.blogs = blogs;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.go();
   },
 };
 </script>
