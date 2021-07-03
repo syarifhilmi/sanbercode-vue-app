@@ -8,10 +8,14 @@ export default new Vuex.Store({
         count: 0
     },
     getters: {
-
+        count: (state) => {
+            return state.count
+        }
     },
     mutations: {
-
+        increment: (state, payload) => {
+            state.count += payload
+        }
     },
     actions: {
 
