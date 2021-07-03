@@ -1,5 +1,21 @@
 <template>
   <v-app>
+    <v-snackbar
+      v-model="snackbarStatus"
+      color="success"
+      bottom
+      timout="2000"
+      multi-line
+      outlined
+    >
+      {{ snackbarText }}
+
+      <template v-lot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="snackbarStatus = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-navigation-drawer app v-model="drawer">
       <v-list>
         <v-list-item v-if="!guest">
@@ -81,6 +97,11 @@ export default {
       { title: "Blogs", icon: "mdi-note", route: "/blogs" },
     ],
     guest: true,
+    snackbarStatus: false,
+    snackbarText: "Anda berhasil menampilkan alert",
   }),
+  mounted() {
+    this.snackbarStatus = true;
+  },
 };
 </script>
