@@ -116,25 +116,52 @@ export default {
     ...mapGetters({
       guest: "auth/guest",
       user: "auth/user",
+      token: "auth/token",
     }),
   },
   methods: {
     logout() {
-      this.guest = true;
-      this.setAlert({
-        status: true,
-        color: "success",
-        text: "Anda berhasil logout",
-      });
+      let config = {
+        method: "post",
+        url: this.apiDomain + "/api/v2/auth/logout",
+        headers: {
+          Authorization: "Bearer" + this.token,
+        },
+      };
+      this.axios(config)
+        .then(() => {
+          this.setToken("");
+          this.setUser({});
+
+          this.setAlert({
+            status: true,
+            color: "success",
+            text: "Anda berhasil logout",
+          });
+        })
+        .catch((response) => {
+          this.setAlert({
+            status: true,
+            color: "error",
+            text: response.data.error,
+          });
+        });
     },
     login() {
-      //this.guest = false;
       this.setDialogComponent({ component: "login" });
     },
     ...mapActions({
       setAlert: "alert/set",
       setDialogComponent: "dialog/setComponent",
+      setToken: "auth/setToken",
+      setUser: "auth/setUser",
+      checkToken: "auth/checkToken",
     }),
+  },
+  mounted() {
+    if (this.token) {
+      this.checkToken(this.token);
+    }
   },
 };
 </script>

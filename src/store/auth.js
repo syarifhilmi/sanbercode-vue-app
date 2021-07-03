@@ -35,6 +35,9 @@ export default {
                     commit('setToken', '')
                 })
         },
+        setUser: ({ commit }, payload) => {
+            commit('setUser', payload)
+        }
     },
     getters: {
         user: state => state.user,
