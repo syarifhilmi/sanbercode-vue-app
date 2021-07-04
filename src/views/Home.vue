@@ -18,7 +18,7 @@
 
 <script>
 import BlogItemComponent from "../components/BlogItemComponent.vue";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     apiDomain: "http://demo-api-vue.sanbercloud.com",
@@ -48,9 +48,6 @@ export default {
           console.log(error);
         });
     },
-    ...mapMutations({
-      increment: "counter/increment",
-    }),
   },
   created() {
     this.go();

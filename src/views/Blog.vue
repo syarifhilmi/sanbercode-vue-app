@@ -22,6 +22,22 @@
               <td>
                 <v-btn
                   block
+                  color="secondary"
+                  class="mb-1"
+                  @click="removeBlog(blog.id)"
+                >
+                  Edit
+                </v-btn>
+                <v-btn
+                  block
+                  color="secondary"
+                  class="mb-1"
+                  @click="removeBlog(blog.id)"
+                >
+                  Upload Foto
+                </v-btn>
+                <v-btn
+                  block
                   color="error"
                   class="mb-1"
                   @click="removeBlog(blog.id)"
@@ -83,15 +99,20 @@ export default {
       this.axios(config)
         .then((response) => {
           console.log(response);
+          window.location = "/blogs";
           this.setAlert({
             status: true,
             color: "success",
             text: "Blog berhasil dihapus",
           });
-          window.location = "/blogs";
         })
         .catch((error) => {
           console.log(error);
+          this.setAlert({
+            status: true,
+            color: "error",
+            text: "Blog gagal dihapus",
+          });
         });
     },
     ...mapActions({
