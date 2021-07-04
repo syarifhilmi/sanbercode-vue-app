@@ -13,8 +13,6 @@
         :blog="blog"
       ></blog-item-component>
     </v-layout>
-    <button @click="increment(10)">Tambah</button>
-    {{ count }}
   </v-container>
 </template>
 

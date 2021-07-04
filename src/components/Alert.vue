@@ -5,7 +5,7 @@
     bottom
     multi-line
     outlined
-    timeout="300"
+    timeout="1000"
   >
     {{ text }}
     <template v-slot:action="{ attrs }">
