@@ -60,16 +60,17 @@ export default {
           this.setAlert({
             status: true,
             color: "success",
-            text: "Blog Berhasil Ditambahkan",
+            text: "Foto berhasil diupdate",
           });
           this.close();
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error);
           this.setAlert({
             status: true,
             color: "error",
-            text: "Blog Tidak Berhasil Ditambahkan",
+            text: "Foto tidak berhasil diupdate",
           });
         });
     },
