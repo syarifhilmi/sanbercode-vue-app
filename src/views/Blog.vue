@@ -1,60 +1,66 @@
 <template>
-  <div>
-    <v-card v-if="blog.id">
-      <v-img
-        :src="
-          blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'
-        "
-        class="white--text"
-        height="200px"
-      >
-        <v-card-title
-          class="fill-height align-end"
-          v-text="blog.title"
-        ></v-card-title>
-      </v-img>
-      <v-card-text>
-        <v-simple-table dense>
-          <tbody>
-            <tr>
-              <td><v-icon>mdi-format-title</v-icon>Judul</td>
-              <td class="blue--text">{{ blog.title }}</td>
-              <td>
-                <v-btn
-                  block
-                  color="secondary"
-                  class="mb-1"
-                  @click="removeBlog(blog.id)"
-                >
-                  Edit
-                </v-btn>
-                <v-btn
-                  block
-                  color="secondary"
-                  class="mb-1"
-                  @click="removeBlog(blog.id)"
-                >
-                  Upload Foto
-                </v-btn>
-                <v-btn
-                  block
-                  color="error"
-                  class="mb-1"
-                  @click="removeBlog(blog.id)"
-                >
-                  Hapus
-                </v-btn>
-              </td>
-            </tr>
-            <tr>
-              <td><v-icon>mdi-note</v-icon>Deskripsi</td>
-              <td>{{ blog.description }}</td>
-            </tr>
-          </tbody>
-        </v-simple-table>
-      </v-card-text>
-    </v-card>
-  </div>
+  <v-app>
+    <Alert />
+    <Dialog />
+    <div>
+      <v-card v-if="blog.id">
+        <v-img
+          :src="
+            blog.photo
+              ? apiDomain + blog.photo
+              : 'https://picsum.photos/200/300'
+          "
+          class="white--text"
+          height="200px"
+        >
+          <v-card-title
+            class="fill-height align-end"
+            v-text="blog.title"
+          ></v-card-title>
+        </v-img>
+        <v-card-text>
+          <v-simple-table dense>
+            <tbody>
+              <tr>
+                <td><v-icon>mdi-format-title</v-icon>Judul</td>
+                <td class="blue--text">{{ blog.title }}</td>
+                <td>
+                  <v-btn
+                    block
+                    color="secondary"
+                    class="mb-1"
+                    @click="removeBlog(blog.id)"
+                  >
+                    Edit
+                  </v-btn>
+                  <v-btn
+                    block
+                    color="secondary"
+                    class="mb-1"
+                    @click="uploadFoto(blog.id)"
+                  >
+                    Upload Foto
+                  </v-btn>
+                  <v-btn
+                    block
+                    color="error"
+                    class="mb-1"
+                    @click="removeBlog(blog.id)"
+                  >
+                    Hapus
+                  </v-btn>
+                </td>
+              </tr>
+              <tr>
+                <td><v-icon>mdi-note</v-icon>Deskripsi</td>
+                <td>{{ blog.description }}</td>
+              </tr>
+            </tbody>
+          </v-simple-table>
+        </v-card-text>
+      </v-card>
+    </div>
+  </v-app>
 </template>
 
 <script>
@@ -67,8 +73,11 @@ export default {
   computed: {
     ...mapGetters({
       token: "auth/token",
+      Alert: () => import("../components/Alert.vue"),
+      Dialog: () => import("../components/Dialog.vue"),
     }),
   },
+  name: "App",
   methods: {
     go() {
       let { id } = this.$route.params;
@@ -115,6 +124,7 @@ export default {
           });
         });
     },
+    uploadFoto() {},
     ...mapActions({
       setAlert: "alert/set",
       setDialogComponent: "dialog/setComponent",
