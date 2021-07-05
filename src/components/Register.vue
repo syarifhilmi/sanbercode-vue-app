@@ -43,7 +43,7 @@ export default {
       password: "",
       name: "",
       selected: null,
-      apiDomain: "http://demo-api-vue.sanbercloud.com",
+      apiDomain: "https://demo-api-vue.sanbercloud.com",
     };
   },
   methods: {

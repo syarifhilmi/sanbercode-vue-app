@@ -26,7 +26,7 @@ export default {
     return {
       judul: "",
       deskripsi: "",
-      apiDomain: "http://demo-api-vue.sanbercloud.com",
+      apiDomain: "https://demo-api-vue.sanbercloud.com",
     };
   },
   computed: {

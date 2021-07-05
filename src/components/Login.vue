@@ -42,7 +42,7 @@ export default {
       email: "",
       showPassword: false,
       password: "",
-      apiDomain: "http://demo-api-vue.sanbercloud.com",
+      apiDomain: "https://demo-api-vue.sanbercloud.com",
     };
   },
   methods: {

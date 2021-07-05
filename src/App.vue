@@ -109,7 +109,7 @@ export default {
       { title: "Home", icon: "mdi-home", route: "/" },
       { title: "Blogs", icon: "mdi-note", route: "/blogs" },
     ],
-    apiDomain: "http://demo-api-vue.sanbercloud.com",
+    apiDomain: "https://demo-api-vue.sanbercloud.com",
   }),
 
   computed: {

@@ -21,7 +21,7 @@ import BlogItemComponent from "../components/BlogItemComponent.vue";
 import { mapGetters } from "vuex";
 export default {
   data: () => ({
-    apiDomain: "http://demo-api-vue.sanbercloud.com",
+    apiDomain: "https://demo-api-vue.sanbercloud.com",
     blogs: [],
   }),
 

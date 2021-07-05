@@ -37,7 +37,7 @@ export default {
   },
   name: "App",
   data: () => ({
-    apiDomain: "http://demo-api-vue.sanbercloud.com",
+    apiDomain: "https://demo-api-vue.sanbercloud.com",
     blogs: [],
     page: 0,
     lengthPage: 0,
