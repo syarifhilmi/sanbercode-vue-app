@@ -124,7 +124,9 @@ export default {
           });
         });
     },
-    uploadFoto() {},
+    uploadFoto(id) {
+      this.setDialogComponent({ component: "upload", params: id });
+    },
     ...mapActions({
       setAlert: "alert/set",
       setDialogComponent: "dialog/setComponent",
