@@ -23,8 +23,9 @@
           @click:append="showPassword = !showPassword"
         ></v-text-field>
         <v-text-field v-model="name" label="Nama"></v-text-field>
+        <label>Foto Profil</label><br />
         <input type="file" @change="onSelected" />
-        <div class="text-xs-center">
+        <div class="text-xs-center mt-4">
           <v-btn color="success lighten-1" @click="submit"> Submit </v-btn>
         </div>
       </v-form>

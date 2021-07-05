@@ -6,11 +6,10 @@
       </v-btn>
       <v-toolbar-title>uploadFoto</v-toolbar-title>
     </v-toolbar>
-    <v-divider></v-divider>
     <v-container fluid>
       <v-form ref="form">
         <input type="file" @change="onSelected" />
-        <div class="text-xs-center">
+        <div class="text-xs-center mt-4">
           <v-btn color="success lighten-1" @click="submit"> Submit </v-btn>
         </div>
       </v-form>
